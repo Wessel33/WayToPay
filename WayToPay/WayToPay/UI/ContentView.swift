@@ -19,7 +19,10 @@ struct ContentView: View {
                     NavigationLink {
                         Text(paymentOption.title)
                     } label: {
-                        PaymentOptionCell(paymentOption: paymentOption)
+                        PaymentOptionRow(
+                            option: paymentOption,
+                            cost: 10.00
+                        )
                     }
                 }
                 .onDelete(perform: deleteItems)

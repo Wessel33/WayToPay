@@ -11,10 +11,13 @@ import SwiftData
 @Model
 final class PaymentOption {
     var title: String
+    var attributes: PaymentAttributes
     
     init(
-        title: String
+        title: String,
+        attributes: PaymentAttributes = []
     ) {
         self.title = title
+        self.attributes = attributes
     }
 }
