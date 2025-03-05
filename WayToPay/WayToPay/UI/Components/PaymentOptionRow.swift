@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PaymentOptionRow: View {
     var option: PaymentOption
-    var cost: Double
+    var cost: Money
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -31,7 +31,7 @@ struct PaymentOptionRow: View {
             }
             
             HStack(spacing: 8) {
-                ForEach(option.attributes.names(), id: \.self) { attribute in
+                ForEach(option.attribute.names(), id: \.self) { attribute in
                     Text(attribute)
                         .font(.caption)
                         .padding(6)
@@ -41,7 +41,7 @@ struct PaymentOptionRow: View {
                 }
             }
             
-            Text("Saving: £\(cost, specifier: "%.2f")") // TODO: Make this localized currency
+            Text("Saving: \(option.attribute.calculateSavings(for: cost).formatted())") // TODO: Make this localized currency
                 .font(.subheadline)
                 .foregroundColor(.green)
         }
@@ -49,25 +49,49 @@ struct PaymentOptionRow: View {
         .background(Color(UIColor.darkGray))
         .cornerRadius(12)
         .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
-        .padding(.horizontal)
+//        .padding(.horizontal)
     }
 }
 
 #Preview {
+    @Previewable @State var cost = Money(100.10)
     PaymentOptionRow(
         option: PaymentOption(
             title: "Option 1",
-            attributes: .cashback
+            attribute: .cashback(rate: 5.0)
         ),
-        cost: 10.00
+        cost: cost
     )
-}
-
-fileprivate extension PaymentAttributes {
-    static var cashback: PaymentAttributes {
-        var option: PaymentAttributes = .cashbackEnabled
-        option.cashbackAmount = 5
-        
-        return option
-    }
+    
+    PaymentOptionRow(
+        option: PaymentOption(
+            title: "Option 2",
+            attribute: .roundUp(factor: 2, rate: 6)
+        ),
+        cost: cost
+    )
+    
+    PaymentOptionRow(
+        option: PaymentOption(
+            title: "Option 3",
+            attribute: .roundUp(factor: 2, rate: 6, years: 2)
+        ),
+        cost: cost
+    )
+    
+    PaymentOptionRow(
+        option: PaymentOption(
+            title: "Option 4",
+            attribute: .cashbackSaving(cashbackRate: 5, savingsRate: 4.85, years: 1)
+        ),
+        cost: cost
+    )
+    
+    PaymentOptionRow(
+        option: PaymentOption(
+            title: "Option 4",
+            attribute: .cashbackSaving(cashbackRate: 5, savingsRate: 4.85, years: 2)
+        ),
+        cost: cost
+    )
 }

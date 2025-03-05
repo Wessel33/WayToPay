@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E2632EF82D6E4D4400A9C6A6 /* WayToPay.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = WayToPay.xctestplan; path = ../WayToPay.xctestplan; sourceTree = "<group>"; };
 		E266932A2D6CBB6B0003E7CF /* WayToPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WayToPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E266933C2D6CBB6D0003E7CF /* WayToPayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WayToPayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26693462D6CBB6D0003E7CF /* WayToPayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WayToPayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +76,7 @@
 		E26693212D6CBB6B0003E7CF = {
 			isa = PBXGroup;
 			children = (
+				E2632EF82D6E4D4400A9C6A6 /* WayToPay.xctestplan */,
 				E266932C2D6CBB6B0003E7CF /* WayToPay */,
 				E266933F2D6CBB6D0003E7CF /* WayToPayTests */,
 				E26693492D6CBB6D0003E7CF /* WayToPayUITests */,

@@ -11,29 +11,31 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var paymentOptions: [PaymentOption]
+    
+    @State var cost: String = "0"
 
     var body: some View {
         NavigationSplitView {
-            List {
-                ForEach(paymentOptions) { paymentOption in
-                    NavigationLink {
-                        Text(paymentOption.title)
-                    } label: {
+            VStack {
+                ValueFieldRow(value: $cost)
+                List {
+                    ForEach(paymentOptions) { paymentOption in
                         PaymentOptionRow(
                             option: paymentOption,
-                            cost: 10.00
+                            cost: Money(100.10)
                         )
                     }
+                    .onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add payment option", systemImage: "plus")
+                .listStyle(.plain)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        Button(action: addItem) {
+                            Label("Add payment option", systemImage: "plus")
+                        }
                     }
                 }
             }
@@ -44,7 +46,7 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = PaymentOption(title: "New payment option")
+            let newItem = PaymentOption(title: "New payment option", attribute: .cashback(rate: 0))
             modelContext.insert(newItem)
         }
     }

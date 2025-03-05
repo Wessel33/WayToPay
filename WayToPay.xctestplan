@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "E84329E2-1D10-4246-93D9-690C2CA12FCA",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:WayToPay.xcodeproj",
+      "identifier" : "E26693292D6CBB6B0003E7CF",
+      "name" : "WayToPay"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:WayToPay.xcodeproj",
+        "identifier" : "E266933B2D6CBB6D0003E7CF",
+        "name" : "WayToPayTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:WayToPay.xcodeproj",
+        "identifier" : "E26693452D6CBB6D0003E7CF",
+        "name" : "WayToPayUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
