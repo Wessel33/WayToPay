@@ -90,4 +90,19 @@ struct SafeDecimal: ExpressibleByIntegerLiteral,
     static func < (lhs: SafeDecimal, rhs: SafeDecimal) -> Bool {
         return lhs.value < rhs.value
     }
+    
+    // MARK: Rounding
+    
+    func round(mode: NSDecimalNumber.RoundingMode, scale: Int16 = 2) -> SafeDecimal {
+        let handler = NSDecimalNumberHandler(
+            roundingMode: mode,
+            scale: scale,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
+        
+        return SafeDecimal(NSDecimalNumber(decimal: self.value).rounding(accordingToBehavior: handler).decimalValue)
+    }
 }

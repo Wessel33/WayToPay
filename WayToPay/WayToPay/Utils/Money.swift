@@ -105,16 +105,7 @@ struct Money: Equatable, Comparable, Codable {
     }
     
     private static func round(_ value: SafeDecimal, mode: NSDecimalNumber.RoundingMode, scale: Int16 = 2) -> SafeDecimal {
-        let handler = NSDecimalNumberHandler(
-            roundingMode: mode,
-            scale: scale,
-            raiseOnExactness: false,
-            raiseOnOverflow: false,
-            raiseOnUnderflow: false,
-            raiseOnDivideByZero: false
-        )
-        
-        return SafeDecimal(NSDecimalNumber(decimal: value.value).rounding(accordingToBehavior: handler).decimalValue)
+        return value.round(mode: mode, scale: scale)
     }
     
     // MARK: String formatting
